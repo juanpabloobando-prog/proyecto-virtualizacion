@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Proyecto Virtualización</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0d1117;
+      --bg2: #161b22;
+      --bg3: #21262d;
+      --border: #30363d;
+      --accent: #58a6ff;
+      --accent2: #3fb950;
+      --accent3: #f78166;
+      --text: #e6edf3;
+      --text2: #8b949e;
+      --text3: #c9d1d9;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Inter', sans-serif;
+      font-size: 15px;
+      line-height: 1.7;
+    }
+
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(13,17,23,0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+      padding: 0 2.5rem;
+      height: 56px;
+    }
+
+    .nav-logo {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 13px;
+      color: var(--accent);
+      margin-right: auto;
+      letter-spacing: 0.03em;
+    }
+
+    nav a {
+      color: var(--text2);
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 500;
+      transition: color .2s;
+    }
+    nav a:hover { color: var(--text); }
+
+    #home {
+      min-height: 92vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 4rem 2rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    #home::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 80% 60% at 50% 0%, rgba(88,166,255,0.08) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .hero-tag {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      color: var(--accent2);
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      border: 1px solid rgba(63,185,80,0.3);
+      padding: 4px 14px;
+      border-radius: 20px;
+      margin-bottom: 1.8rem;
+    }
+
+    #home h1 {
+      font-size: clamp(2rem, 5vw, 3.8rem);
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      line-height: 1.15;
+      margin-bottom: 1rem;
+      max-width: 820px;
+    }
+
+    #home h1 span { color: var(--accent); }
+
+    .hero-sub {
+      font-size: 15px;
+      color: var(--text2);
+      margin-bottom: 0.6rem;
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    .hero-desc {
+      max-width: 680px;
+      color: var(--text3);
+      font-size: 15px;
+      line-height: 1.8;
+      margin-top: 1.5rem;
+    }
+
+    .hero-pills {
+      display: flex;
+      gap: 0.8rem;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-top: 2.2rem;
+    }
+
+    .pill {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 12px;
+      padding: 5px 14px;
+      border-radius: 6px;
+      background: var(--bg3);
+      border: 1px solid var(--border);
+      color: var(--text2);
+    }
+
+    section {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 5rem 2rem;
+    }
+
+    .section-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      color: var(--accent);
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      margin-bottom: 0.6rem;
+    }
+
+    h2 {
+      font-size: 1.9rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      margin-bottom: 2.5rem;
+      color: var(--text);
+    }
+
+    #equipo { border-top: 1px solid var(--border); }
+
+    .team-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+      gap: 1rem;
+    }
+
+    .team-card {
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1.2rem 1rem;
+    }
+
+    .team-card .name {
+      font-weight: 600;
+      font-size: 14px;
+      color: var(--text);
+      margin-bottom: 4px;
+    }
+
+    .team-card .id {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 12px;
+      color: var(--text2);
+    }
+
+    #componentes { border-top: 1px solid var(--border); }
+
+    .comp-block {
+      margin-bottom: 5rem;
+    }
+
+    .comp-header {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 2rem;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .comp-num {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      color: var(--accent);
+      background: rgba(88,166,255,0.1);
+      border: 1px solid rgba(88,166,255,0.25);
+      padding: 3px 10px;
+      border-radius: 5px;
+      white-space: nowrap;
+    }
+
+    .comp-header h3 {
+      font-size: 1.25rem;
+      font-weight: 600;
+      color: var(--text);
+    }
+
+    .evidencia {
+      margin-bottom: 2.5rem;
+    }
+
+    .evidencia h4 {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text2);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-family: 'JetBrains Mono', monospace;
+      margin-bottom: 0.7rem;
+    }
+
+    .evidencia p {
+      color: var(--text3);
+      font-size: 14px;
+      line-height: 1.75;
+      margin-bottom: 1rem;
+      max-width: 820px;
+    }
+
+    .evidencia img {
+      width: 100%;
+      max-width: 820px;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      display: block;
+    }
+
+    #conclusiones {
+      border-top: 1px solid var(--border);
+    }
+
+    #conclusiones p {
+      color: var(--text3);
+      max-width: 720px;
+    }
+
+    footer {
+      border-top: 1px solid var(--border);
+      text-align: center;
+      padding: 2rem;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 12px;
+      color: var(--text2);
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <span class="nav-logo">Proyecto Vritualizacion</span>
+    <a href="#home">Inicio</a>
+    <a href="#equipo">Equipo</a>
+    <a href="#componentes">Componentes</a>
+    <a href="#conclusiones">Conclusiones</a>
+  </nav>
+
+  <section id="home">
+    <div class="hero-tag">Sistemas Operativos · 2026</div>
+    <h1>Proyecto de <span>Virtualización</span></h1>
+    <p class="hero-sub">VirtualBox · Docker · Kubernetes · GitHub Pages</p>
+    <p class="hero-desc">
+      El proyecto tiene como objetivo explorar y aplicar conceptos fundamentales de virtualización
+      e infraestructura moderna de software, mediante la implementación práctica de diferentes
+      tecnologías en entornos controlados. A lo largo de los cuatro componentes se abordaron
+      temáticas como la configuración de máquinas virtuales con VirtualBox sobre Fedora 44,
+      administración mediante SSH, orquestación de contenedores con Kubernetes usando Minikube,
+      y la documentación del proceso mediante un sitio web publicado.
+    </p>
+    <div class="hero-pills">
+      <span class="pill">Fedora 44</span>
+      <span class="pill">VirtualBox</span>
+      <span class="pill">SSH</span>
+      <span class="pill">Docker</span>
+      <span class="pill">Minikube</span>
+      <span class="pill">Kubernetes</span>
+    </div>
+  </section>
+
+  <section id="equipo">
+    <div class="section-label">// equipo</div>
+    <h2>Integrantes</h2>
+    <div class="team-grid">
+      <div class="team-card">
+        <div class="name">Juan Pablo Obando</div>
+        <div class="id">#2560651</div>
+      </div>
+      <div class="team-card">
+        <div class="name">Luis Felipe Chaurra</div>
+        <div class="id">#2560944</div>
+      </div>
+      <div class="team-card">
+        <div class="name">Sofia Gallo</div>
+        <div class="id">#2560905</div>
+      </div>
+      <div class="team-card">
+        <div class="name">Alan David Mosquera</div>
+        <div class="id">#2560773</div>
+      </div>
+      <div class="team-card">
+        <div class="name">Jampier Cardona</div>
+        <div class="id">#2560847</div>
+      </div>
+    </div>
+  </section>
+
+  <section id="componentes">
+    <div class="section-label">// componentes</div>
+    <h2>Desarrollo del Proyecto</h2>
+
+    <div class="comp-block">
+      <div class="comp-header">
+        <span class="comp-num">COMP 01</span>
+        <h3>Virtualización con Linux</h3>
+      </div>
+
+      <p style="color:var(--text3); font-size:14px; margin-bottom:2rem; max-width:820px;">
+        Esta componente consiste en la instalación de dos VMs en VirtualBox: la primera con
+        Fedora 44 Workstation (entorno gráfico) y la segunda con Fedora 44 Server (solo consola).
+        Se configuraron particiones manuales, se estableció la red entre ambas máquinas y se
+        activó el acceso SSH desde la VM gráfica hacia la VM consola.
+      </p>
+
+      <div class="evidencia">
+        <h4>Instalación — Fedora 44 Workstation</h4>
+        <p>
+          En esta captura se evidencia el proceso de instalación de Fedora 44 en su edición
+          Workstation. Se puede ver el progreso con la etapa de instalación de software en curso,
+          confirmando que el sistema fue instalado correctamente en la VM de entorno gráfico.
+        </p>
+        <img src="capturas/Componente 1/instalacion evidencia fedora 44.png" alt="Instalación Fedora 44 Workstation">
+      </div>
+
+      <div class="evidencia">
+        <h4>Particionamiento — Fedora 44 Workstation</h4>
+        <p>
+          En esta captura se evidencian las particiones de la VM Workstation mediante el comando
+          <code style="font-family:'JetBrains Mono',monospace; color:var(--accent); font-size:13px;">lsblk</code>.
+          Aunque el instalador gráfico no permitió el particionamiento manual durante la instalación,
+          se puede observar la estructura resultante con las particiones <strong>/boot/efi</strong>,
+          <strong>/boot</strong>, y los volúmenes lógicos para <strong>/</strong>, <strong>swap</strong>
+          y <strong>/home</strong>.
+        </p>
+        <img src="capturas/Componente 1/particiones workspace.png" alt="Particiones Fedora 44 Workstation">
+      </div>
+
+      <div class="evidencia">
+        <h4>Particionamiento Manual — Fedora 44 Server</h4>
+        <p>
+          En esta captura se evidencia que, a diferencia del entorno gráfico, la instalación de
+          Fedora Server sí permitió realizar el particionamiento manual. Se configuraron 4 particiones:
+          <strong>/boot/efi</strong>, <strong>/boot</strong>, <strong>/</strong> y <strong>/home</strong>,
+          cumpliendo con el requisito mínimo del proyecto.
+        </p>
+        <img src="capturas/Componente 1/particion manual server.png" alt="Partición manual Fedora 44 Server">
+      </div>
+
+      <div class="evidencia">
+        <h4>Configuración de Red — Fedora 44 Workstation</h4>
+        <p>
+          En la siguiente captura se muestra la configuración de red de la VM Workstation a través
+          de la terminal del entorno gráfico. Se evidencian las direcciones IP de cada interfaz:
+          la red NAT (<strong>enp0s3</strong>) con IP dinámica y la red solo-anfitrión
+          (<strong>enp0s8</strong>) con IP estática en <strong>192.168.100.10</strong>,
+          ambas en estado activo (UP).
+        </p>
+        <img src="capturas/Componente 1/config red workspace.png" alt="Configuración de red Workstation">
+      </div>
+
+      <div class="evidencia">
+        <h4>Configuración de Red — Fedora 44 Server</h4>
+        <p>
+          En esta captura se muestra la misma configuración de red pero vista desde la consola
+          de la VM Server. Los datos esenciales como las IPs de las interfaces y sus estados
+          activos se mantienen, confirmando que ambas máquinas están correctamente configuradas
+          en la misma red solo-anfitrión.
+        </p>
+        <img src="capturas/Componente 1/config redes server.png" alt="Configuración de red Server">
+      </div>
+
+      <div class="evidencia">
+        <h4>SSH Activo en VM Server</h4>
+        <p>
+          En la siguiente captura se muestra el estado del servicio SSH en la VM Server a través
+          de la terminal, donde podemos verificar que el servicio sshd se encuentra activo y en
+          ejecución (active running). Además, en la parte inferior se pueden observar los registros
+          de conexiones SSH exitosas realizadas desde la VM Workstation hacia el Server, confirmando
+          que la comunicación entre ambas máquinas virtuales funciona correctamente.
+        </p>
+        <img src="capturas/Componente 1/SSH activo en VM Server.png" alt="SSH activo en VM Server">
+      </div>
+
+      <div class="evidencia">
+        <h4>Conexión SSH entre VMs</h4>
+        <p>
+          En la siguiente captura se muestra la conexión SSH realizada desde la VM Workstation
+          hacia la VM Server, donde se ejecuta el comando
+          <code style="font-family:'JetBrains Mono',monospace; color:var(--accent); font-size:13px;">ssh juan@192.168.100.20</code>
+          y se ingresa la contraseña correspondiente. Una vez autenticado, el sistema confirma
+          el acceso exitoso mostrando el último inicio de sesión registrado, lo que evidencia
+          que la comunicación entre ambas máquinas virtuales a través de la red solo-anfitrión
+          está funcionando correctamente.
+        </p>
+        <img src="capturas/Componente 1/conexion entre VM server y VM workspace.png" alt="Conexión SSH entre VMs">
+      </div>
+    </div>
+
+    <div class="comp-block">
+      <div class="comp-header">
+        <span class="comp-num">COMP 02</span>
+        <h3>Contenedores Docker</h3>
+      </div>
+
+      <p style="color:var(--text3); font-size:14px; margin-bottom:2rem; max-width:820px;">
+        En esta componente se instaló Docker Engine en la VM Workstation y se crearon Dockerfiles
+        propios para un servidor frontend con Nginx y un servidor backend con Python. Los servicios
+        se orquestaron mediante docker-compose con volúmenes persistentes para el frontend.
+      </p>
+
+      <div class="evidencia">
+        <h4>Dockerfile — Frontend (Nginx)</h4>
+        <p>
+          En esta captura se muestra el contenido del Dockerfile creado para el servicio frontend.
+          Está basado en la imagen de Fedora 44, instala Nginx, copia el archivo
+          <strong>index.html</strong> al directorio de publicación del servidor y lo expone en
+          el puerto 80, levantando Nginx en modo primer plano.
+        </p>
+        <img src="capturas/Componente 2/creacion dockerfile fronted.png" alt="Dockerfile Frontend Nginx">
+      </div>
+
+      <div class="evidencia">
+        <h4>Dockerfile — Backend (Python)</h4>
+        <p>
+          En esta captura se muestra el Dockerfile del servicio backend. Basado igualmente en
+          Fedora 44, instala Python 3, define el directorio de trabajo en <strong>/app</strong>,
+          copia el script <strong>server.py</strong> y expone el puerto 5000, ejecutando el
+          servidor Python directamente al iniciar el contenedor.
+        </p>
+        <img src="capturas/Componente 2/creacion dockerfile backend.png" alt="Dockerfile Backend Python">
+      </div>
+
+      <div class="evidencia">
+        <h4>Archivo docker-compose.yml</h4>
+        <p>
+          En esta captura se muestra el archivo <strong>docker-compose.yml</strong> que orquesta
+          ambos servicios. El frontend se construye desde su directorio, se mapea al puerto 80
+          del host y cuenta con un volumen persistente para los archivos HTML. El backend se
+          construye desde su propio directorio y se expone en el puerto 5000.
+        </p>
+        <img src="capturas/Componente 2/creacion docker compose.png" alt="docker-compose.yml">
+      </div>
+
+      <div class="evidencia">
+        <h4>Frontend funcionando en el navegador</h4>
+        <p>
+          En esta captura se evidencia el acceso al servicio frontend desde el navegador dentro
+          de la VM. Al ingresar a <strong>http://localhost</strong> se puede ver la página
+          servida por el contenedor Nginx, confirmando que el servidor frontend está funcionando
+          correctamente y sirviendo archivos estáticos.
+        </p>
+        <img src="capturas/Componente 2/frontend funcionando localhost.png" alt="Frontend funcionando en localhost">
+      </div>
+
+      <div class="evidencia">
+        <h4>Backend funcionando en el navegador</h4>
+        <p>
+          En esta captura se evidencia el acceso al servicio backend desde el navegador accediendo
+          a <strong>http://localhost:5000</strong>. La respuesta del servidor Python confirma que
+          el contenedor está activo y respondiendo correctamente en el puerto configurado,
+          verificando así el funcionamiento completo del backend.
+        </p>
+        <img src="capturas/Componente 2/backend funcionando puerto especifico.png" alt="Backend funcionando en puerto 5000">
+      </div>
+    </div>
+
+    <div class="comp-block">
+      <div class="comp-header">
+        <span class="comp-num">COMP 03</span>
+        <h3>Orquestación con Kubernetes</h3>
+      </div>
+
+      <p style="color:var(--text3); font-size:14px; margin-bottom:2rem; max-width:820px;">
+        En esta componente se instaló Minikube en la VM Workstation y se desplegó un servidor
+        Nginx con múltiples réplicas usando manifiestos YAML. El servicio se expuso mediante
+        NodePort y se demostró el escalado horizontal del despliegue.
+      </p>
+
+      <div class="evidencia">
+        <h4>Deployment con 2 réplicas y servicio NodePort</h4>
+        <p>
+          En esta captura se muestra el resultado de los comandos
+          <code style="font-family:'JetBrains Mono',monospace; color:var(--accent); font-size:13px;">kubectl get pods</code>
+          y <code style="font-family:'JetBrains Mono',monospace; color:var(--accent); font-size:13px;">kubectl get svc</code>,
+          donde se evidencia que el deployment de Nginx tiene 2 pods corriendo correctamente
+          en estado <strong>Running</strong>, y que el servicio está expuesto como
+          <strong>NodePort</strong> en el puerto 30080.
+        </p>
+        <img src="capturas/Componente 3/creacion y confirmacion de 2 pods nginx.png" alt="2 pods Nginx corriendo y servicio NodePort">
+      </div>
+
+      <div class="evidencia">
+        <h4>Escalado horizontal a 3 réplicas</h4>
+        <p>
+          En esta captura se muestra el escalado manual del deployment a 3 réplicas mediante el
+          comando
+          <code style="font-family:'JetBrains Mono',monospace; color:var(--accent); font-size:13px;">kubectl scale deployment nginx --replicas=3</code>.
+          Inmediatamente después, se verifica con
+          <code style="font-family:'JetBrains Mono',monospace; color:var(--accent); font-size:13px;">kubectl get pods</code>
+          que los 3 pods están activos y en estado <strong>Running</strong>, confirmando el
+          escalado exitoso.
+        </p>
+        <img src="capturas/Componente 3/escala de 3 kubectl y pods corriendo.png" alt="Escalado a 3 réplicas Kubernetes">
+      </div>
+
+      <div class="evidencia">
+        <h4>Acceso a Nginx desde el navegador vía NodePort</h4>
+        <p>
+          En esta captura se evidencia el acceso al servidor Nginx desplegado en Kubernetes
+          desde el navegador. Utilizando la IP del clúster obtenida con
+          <code style="font-family:'JetBrains Mono',monospace; color:var(--accent); font-size:13px;">minikube ip</code>
+          (<strong>192.168.49.2</strong>) y el puerto NodePort <strong>30080</strong>, se
+          confirma que el servicio es accesible externamente y que Nginx responde correctamente.
+        </p>
+        <img src="capturas/Componente 3/nginx navegador ip.png" alt="Nginx accesible desde navegador vía NodePort">
+      </div>
+    </div>
+
+  </section>
+
+  <section id="conclusiones">
+    <div class="section-label">// conclusiones</div>
+    <h2>Conclusiones</h2>
+    <p style="color:var(--text3); max-width:720px;">
+      A lo largo del proyecto se integraron habilidades de administración de sistemas, redes,
+      infraestructura como código y documentación técnica, reflejando un flujo de trabajo cercano
+      al que se aplica en entornos reales de DevOps e infraestructura en la nube. Cada componente
+      aportó una perspectiva distinta sobre cómo las tecnologías de virtualización y contenedores
+      resuelven problemas reales de escalabilidad, portabilidad y gestión de servicios.
+    </p>
+  </section>
+
+  <footer>
+    Proyecto Virtualización · Sistemas Operativos · 2026
+  </footer>
+
+</body>
+</html>
