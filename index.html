@@ -20,7 +20,6 @@
     }
 
     * { margin: 0; padding: 0; box-sizing: border-box; }
-
     html { scroll-behavior: smooth; }
 
     body {
@@ -31,6 +30,7 @@
       line-height: 1.7;
     }
 
+    /* ── NAVBAR ── */
     nav {
       position: sticky;
       top: 0;
@@ -44,7 +44,6 @@
       padding: 0 2.5rem;
       height: 56px;
     }
-
     .nav-logo {
       font-family: 'JetBrains Mono', monospace;
       font-size: 13px;
@@ -52,7 +51,6 @@
       margin-right: auto;
       letter-spacing: 0.03em;
     }
-
     nav a {
       color: var(--text2);
       text-decoration: none;
@@ -62,6 +60,7 @@
     }
     nav a:hover { color: var(--text); }
 
+    /* ── HERO ── */
     #home {
       min-height: 92vh;
       display: flex;
@@ -73,7 +72,6 @@
       position: relative;
       overflow: hidden;
     }
-
     #home::before {
       content: '';
       position: absolute;
@@ -81,7 +79,6 @@
       background: radial-gradient(ellipse 80% 60% at 50% 0%, rgba(88,166,255,0.08) 0%, transparent 70%);
       pointer-events: none;
     }
-
     .hero-tag {
       font-family: 'JetBrains Mono', monospace;
       font-size: 11px;
@@ -93,7 +90,6 @@
       border-radius: 20px;
       margin-bottom: 1.8rem;
     }
-
     #home h1 {
       font-size: clamp(2rem, 5vw, 3.8rem);
       font-weight: 700;
@@ -102,16 +98,13 @@
       margin-bottom: 1rem;
       max-width: 820px;
     }
-
     #home h1 span { color: var(--accent); }
-
     .hero-sub {
       font-size: 15px;
       color: var(--text2);
       margin-bottom: 0.6rem;
       font-family: 'JetBrains Mono', monospace;
     }
-
     .hero-desc {
       max-width: 680px;
       color: var(--text3);
@@ -119,7 +112,6 @@
       line-height: 1.8;
       margin-top: 1.5rem;
     }
-
     .hero-pills {
       display: flex;
       gap: 0.8rem;
@@ -127,7 +119,6 @@
       justify-content: center;
       margin-top: 2.2rem;
     }
-
     .pill {
       font-family: 'JetBrains Mono', monospace;
       font-size: 12px;
@@ -138,12 +129,12 @@
       color: var(--text2);
     }
 
+    /* ── SECCIONES GENERALES ── */
     section {
-      max-width: 960px;
+      max-width: 820px;
       margin: 0 auto;
       padding: 5rem 2rem;
     }
-
     .section-label {
       font-family: 'JetBrains Mono', monospace;
       font-size: 11px;
@@ -152,7 +143,6 @@
       text-transform: uppercase;
       margin-bottom: 0.6rem;
     }
-
     h2 {
       font-size: 1.9rem;
       font-weight: 700;
@@ -161,49 +151,101 @@
       color: var(--text);
     }
 
+    /* ── EQUIPO ── */
     #equipo { border-top: 1px solid var(--border); }
-
     .team-grid {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
       gap: 1rem;
     }
-
     .team-card {
       background: var(--bg2);
       border: 1px solid var(--border);
       border-radius: 10px;
       padding: 1.2rem 1rem;
     }
-
     .team-card .name {
       font-weight: 600;
       font-size: 14px;
       color: var(--text);
       margin-bottom: 4px;
     }
-
     .team-card .id {
       font-family: 'JetBrains Mono', monospace;
       font-size: 12px;
       color: var(--text2);
     }
 
-    #componentes { border-top: 1px solid var(--border); }
+    /* ── DIAGRAMAS ── */
+    #diagramas { border-top: 1px solid var(--border); }
 
-    .comp-block {
-      margin-bottom: 5rem;
+    .diagramas-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
     }
 
-    .comp-header {
+    .diagrama-card {
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
       display: flex;
-      align-items: center;
-      gap: 1rem;
-      margin-bottom: 2rem;
-      padding-bottom: 1rem;
+      flex-direction: column;
+    }
+
+    .diagrama-card img {
+      width: 100%;
+      display: block;
       border-bottom: 1px solid var(--border);
     }
 
+    .diagrama-info {
+      padding: 1rem;
+      flex: 1;
+    }
+
+    .diagrama-info .dia-num {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      color: var(--accent);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 0.4rem;
+    }
+
+    .diagrama-info .dia-title {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 0.5rem;
+    }
+
+    .diagrama-info .dia-desc {
+      font-size: 12px;
+      color: var(--text2);
+      line-height: 1.6;
+    }
+
+    /* ── COMPONENTES ── */
+    #componentes { border-top: 1px solid var(--border); }
+    .comp-block {
+      margin-bottom: 5rem;
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      text-align:center;
+    }
+    .comp-header {
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      gap:.8rem;
+      margin-bottom:2rem;
+      padding-bottom:1rem;
+      border-bottom:1px solid var(--border);
+      width:100%;
+    }
     .comp-num {
       font-family: 'JetBrains Mono', monospace;
       font-size: 11px;
@@ -214,17 +256,14 @@
       border-radius: 5px;
       white-space: nowrap;
     }
-
     .comp-header h3 {
       font-size: 1.25rem;
       font-weight: 600;
       color: var(--text);
     }
 
-    .evidencia {
-      margin-bottom: 2.5rem;
-    }
-
+    /* ── EVIDENCIA ── */
+    .evidencia { margin-bottom: 2.5rem; }
     .evidencia h4 {
       font-size: 14px;
       font-weight: 600;
@@ -234,7 +273,6 @@
       font-family: 'JetBrains Mono', monospace;
       margin-bottom: 0.7rem;
     }
-
     .evidencia p {
       color: var(--text3);
       font-size: 14px;
@@ -242,24 +280,115 @@
       margin-bottom: 1rem;
       max-width: 820px;
     }
-
     .evidencia img {
       width: 100%;
-      max-width: 820px;
+      max-width: 600px;
       border-radius: 8px;
       border: 1px solid var(--border);
       display: block;
     }
 
-    #conclusiones {
-      border-top: 1px solid var(--border);
+    .evidencia img.img-grande{
+    max-width:850px;
     }
 
-    #conclusiones p {
-      color: var(--text3);
-      max-width: 720px;
+    /* par de imágenes lado a lado (frontend + backend) */
+    .img-pair {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.2rem;
+      max-width: 700px;
+    }
+    .img-pair-item {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+    .img-pair-item img {
+      width: 100%;
+      max-width: 100%;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      display: block;
+    }
+    .img-pair-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      color: var(--accent2);
+      text-align: center;
+      background: rgba(63,185,80,0.08);
+      border: 1px solid rgba(63,185,80,0.2);
+      border-radius: 5px;
+      padding: 3px 8px;
     }
 
+    
+
+    .comp-intro{
+      max-width:720px;
+      color:var(--text3);
+      font-size:14px;
+      margin-bottom:2rem;
+    }
+
+    .evidencia{
+      width:100%;
+      max-width:760px;
+      background:var(--bg2);
+      border:1px solid var(--border);
+      border-radius:14px;
+      padding:1.6rem;
+      margin-bottom:2rem;
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      text-align:center;
+    }
+
+    .evidencia img{
+      width:100%;
+      max-width:520px;
+      border-radius:8px;
+      border:1px solid var(--border);
+      display:block;
+      margin:auto;
+    }
+
+    .diagram-card{
+      width:100%;
+      max-width:760px;
+      background:linear-gradient(180deg,#1b212b,#161b22);
+      border:1px solid var(--border);
+      border-radius:16px;
+      padding:1.8rem;
+      margin-top:1.5rem;
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      text-align:center;
+    }
+
+    .diagram-card h4{
+      color:var(--accent);
+      margin-bottom:.8rem;
+    }
+
+    .diagram-card p{
+      color:var(--text2);
+      max-width:620px;
+      margin-bottom:1.2rem;
+    }
+
+    .diagram-card img{
+      max-width:400px !important;
+      width:100%;
+    }
+
+    /* ── CONCLUSIONES ── */
+    #conclusiones { border-top: 1px solid var(--border); }
+    #conclusiones p { color: var(--text3); max-width: 720px; }
+
+    /* ── FOOTER ── */
     footer {
       border-top: 1px solid var(--border);
       text-align: center;
@@ -272,14 +401,16 @@
 </head>
 <body>
 
+  <!-- NAVBAR -->
   <nav>
-    <span class="nav-logo">Proyecto Vritualizacion</span>
+    <span class="nav-logo">$ proyecto-virtualizacion</span>
     <a href="#home">Inicio</a>
     <a href="#equipo">Equipo</a>
     <a href="#componentes">Componentes</a>
     <a href="#conclusiones">Conclusiones</a>
   </nav>
 
+  <!-- HERO -->
   <section id="home">
     <div class="hero-tag">Sistemas Operativos · 2026</div>
     <h1>Proyecto de <span>Virtualización</span></h1>
@@ -302,6 +433,7 @@
     </div>
   </section>
 
+  <!-- EQUIPO -->
   <section id="equipo">
     <div class="section-label">// equipo</div>
     <h2>Integrantes</h2>
@@ -329,17 +461,19 @@
     </div>
   </section>
 
+  <!-- COMPONENTES -->
   <section id="componentes">
     <div class="section-label">// componentes</div>
     <h2>Desarrollo del Proyecto</h2>
 
+    <!-- ── COMPONENTE 1 ── -->
     <div class="comp-block">
       <div class="comp-header">
         <span class="comp-num">COMP 01</span>
         <h3>Virtualización con Linux</h3>
       </div>
 
-      <p style="color:var(--text3); font-size:14px; margin-bottom:2rem; max-width:820px;">
+      <p class="comp-intro">
         Esta componente consiste en la instalación de dos VMs en VirtualBox: la primera con
         Fedora 44 Workstation (entorno gráfico) y la segunda con Fedora 44 Server (solo consola).
         Se configuraron particiones manuales, se estableció la red entre ambas máquinas y se
@@ -377,7 +511,7 @@
           <strong>/boot/efi</strong>, <strong>/boot</strong>, <strong>/</strong> y <strong>/home</strong>,
           cumpliendo con el requisito mínimo del proyecto.
         </p>
-        <img src="capturas/Componente 1/particion manual server.png" alt="Partición manual Fedora 44 Server">
+        <img class="img-grande"src="capturas/Componente 1/particion manual server.png" alt="Partición manual Fedora 44 Server">
       </div>
 
       <div class="evidencia">
@@ -389,7 +523,7 @@
           (<strong>enp0s8</strong>) con IP estática en <strong>192.168.100.10</strong>,
           ambas en estado activo (UP).
         </p>
-        <img src="capturas/Componente 1/config red workspace.png" alt="Configuración de red Workstation">
+        <img class="img-grande" src="capturas/Componente 1/config red workspace.png" alt="Configuración de red Workstation">
       </div>
 
       <div class="evidencia">
@@ -400,7 +534,7 @@
           activos se mantienen, confirmando que ambas máquinas están correctamente configuradas
           en la misma red solo-anfitrión.
         </p>
-        <img src="capturas/Componente 1/config redes server.png" alt="Configuración de red Server">
+        <img class="img-grande" src="capturas/Componente 1/config redes server.png" alt="Configuración de red Server">
       </div>
 
       <div class="evidencia">
@@ -412,7 +546,7 @@
           de conexiones SSH exitosas realizadas desde la VM Workstation hacia el Server, confirmando
           que la comunicación entre ambas máquinas virtuales funciona correctamente.
         </p>
-        <img src="capturas/Componente 1/SSH activo en VM Server.png" alt="SSH activo en VM Server">
+        <img class="img-grande" src="capturas/Componente 1/SSH activo en VM Server.png" alt="SSH activo en VM Server">
       </div>
 
       <div class="evidencia">
@@ -428,15 +562,21 @@
         </p>
         <img src="capturas/Componente 1/conexion entre VM server y VM workspace.png" alt="Conexión SSH entre VMs">
       </div>
+      <div class="diagram-card">
+        <h4>Diagrama de Arquitectura</h4>
+        <p>Representación visual de la arquitectura implementada, mostrando la relación entre las dos VMs y la comunicación SSH a través de la red Host-Only.</p>
+        <img src="diagramas/Componente 1/comp1.png" alt="Diagrama arquitectura Componente 1" >
+      </div>
     </div>
 
+    <!-- ── COMPONENTE 2 ── -->
     <div class="comp-block">
       <div class="comp-header">
         <span class="comp-num">COMP 02</span>
         <h3>Contenedores Docker</h3>
       </div>
 
-      <p style="color:var(--text3); font-size:14px; margin-bottom:2rem; max-width:820px;">
+      <p class="comp-intro">
         En esta componente se instaló Docker Engine en la VM Workstation y se crearon Dockerfiles
         propios para un servidor frontend con Nginx y un servidor backend con Python. Los servicios
         se orquestaron mediante docker-compose con volúmenes persistentes para el frontend.
@@ -476,35 +616,38 @@
       </div>
 
       <div class="evidencia">
-        <h4>Frontend funcionando en el navegador</h4>
+        <h4>Servicios funcionando en el navegador</h4>
         <p>
-          En esta captura se evidencia el acceso al servicio frontend desde el navegador dentro
-          de la VM. Al ingresar a <strong>http://localhost</strong> se puede ver la página
-          servida por el contenedor Nginx, confirmando que el servidor frontend está funcionando
-          correctamente y sirviendo archivos estáticos.
+          En las siguientes capturas se evidencia el acceso a ambos servicios desde el navegador
+          dentro de la VM, confirmando que tanto el frontend como el backend están activos
+          y respondiendo correctamente en sus respectivos puertos.
         </p>
-        <img src="capturas/Componente 2/frontend funcionando localhost.png" alt="Frontend funcionando en localhost">
+        <div class="img-pair">
+          <div class="img-pair-item">
+            <img src="capturas/Componente 2/frontend funcionando localhost.png" alt="Frontend funcionando en localhost">
+            <span class="img-pair-label">Frontend — localhost:80</span>
+          </div>
+          <div class="img-pair-item">
+            <img src="capturas/Componente 2/backend funcionando puerto especifico.png" alt="Backend funcionando en puerto 5000">
+            <span class="img-pair-label">Backend — localhost:5000</span>
+          </div>
+        </div>
       </div>
-
-      <div class="evidencia">
-        <h4>Backend funcionando en el navegador</h4>
-        <p>
-          En esta captura se evidencia el acceso al servicio backend desde el navegador accediendo
-          a <strong>http://localhost:5000</strong>. La respuesta del servidor Python confirma que
-          el contenedor está activo y respondiendo correctamente en el puerto configurado,
-          verificando así el funcionamiento completo del backend.
-        </p>
-        <img src="capturas/Componente 2/backend funcionando puerto especifico.png" alt="Backend funcionando en puerto 5000">
+      <div class="diagram-card">
+        <h4>Diagrama de Arquitectura</h4>
+        <p>Representación visual de la orquestación de servicios con Docker Compose, mostrando los contenedores, puertos y volúmenes configurados.</p>
+        <img src="diagramas/Componente 2/comp2.png" alt="Diagrama arquitectura Componente 2" >
       </div>
     </div>
 
+    <!-- ── COMPONENTE 3 ── -->
     <div class="comp-block">
       <div class="comp-header">
         <span class="comp-num">COMP 03</span>
         <h3>Orquestación con Kubernetes</h3>
       </div>
 
-      <p style="color:var(--text3); font-size:14px; margin-bottom:2rem; max-width:820px;">
+      <p class="comp-intro">
         En esta componente se instaló Minikube en la VM Workstation y se desplegó un servidor
         Nginx con múltiples réplicas usando manifiestos YAML. El servicio se expuso mediante
         NodePort y se demostró el escalado horizontal del despliegue.
@@ -548,10 +691,16 @@
         </p>
         <img src="capturas/Componente 3/nginx navegador ip.png" alt="Nginx accesible desde navegador vía NodePort">
       </div>
+      <div class="diagram-card">
+        <h4>Diagrama de Arquitectura</h4>
+        <p>Representación visual del clúster de Minikube con el Deployment de Nginx, las 3 réplicas en ejecución y el Service NodePort para acceso externo.</p>
+        <img src="diagramas/Componente 3/comp3.png" alt="Diagrama arquitectura Componente 3" >
+      </div>
     </div>
 
   </section>
 
+  <!-- CONCLUSIONES -->
   <section id="conclusiones">
     <div class="section-label">// conclusiones</div>
     <h2>Conclusiones</h2>
